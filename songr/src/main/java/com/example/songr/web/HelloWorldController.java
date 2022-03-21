@@ -1,11 +1,13 @@
 package com.example.songr.web;
 
 import com.example.songr.domain.Album;
+
+import com.example.songr.repository.AlbumRepository;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.view.RedirectView;
 
 
 import java.util.ArrayList;
@@ -14,6 +16,40 @@ import java.util.Locale;
 
 @Controller
 public class HelloWorldController {
+
+    @Autowired
+    AlbumRepository albumRepository;
+
+    // this method for test adding to database
+    @GetMapping("/addToDB") // just for testing
+    public void addAlbumToDB(){
+        System.out.println("add test");
+        Album myAlbum=  new Album("Al-Mu'allim","Sami Yusuf ",8,5,"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTZvHHro_2CB3jf1Irc4wUoyPqjjTkWAUfICQ&usqp=CAU");
+        albumRepository.save(myAlbum);
+        Album newAlbum = new Album("lolo","sadan",1234, 23,"hi");
+        albumRepository.save(newAlbum);
+        // check if it is added by write a SELECT Query in CLI
+        // select * from album;
+
+    }
+
+    @PostMapping("/addAlbum")
+    public RedirectView addNewAlbum(@ModelAttribute Album album ){
+            System.out.println("************ add album *************************");
+            albumRepository.save(album);
+            return new RedirectView("allalbums");
+
+    }
+
+    @GetMapping("/allalbums")
+    public String getAlbums(Model model){
+        System.out.println("**********all albums ***********");
+        model.addAttribute("albumsList",albumRepository.findAll());
+        System.out.println(albumRepository.findAll());
+        return "album";
+    }
+
+
 
     @GetMapping("/hello")
     String greeting()
@@ -40,4 +76,5 @@ public class HelloWorldController {
         allAlbums.add(myAlbum2);
         return allAlbums;
     }
+
 }
