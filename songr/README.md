@@ -18,4 +18,17 @@
       * length
       * imageUrl
 
+ ********************************    Lab 12   ********************************
+
+   * addToDB : add data about an album from declaring an object and save them in DataBase
+
+
+   * (/allalbums): returns a page shows list of albums that are in Database
+
+
+   * (/addAlbum) : add data about album songs and them to dataBase
+
+
+
+
 * run the program at :(localhost:8080/)
