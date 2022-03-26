@@ -3,6 +3,8 @@ package com.example.songr.domain;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
+import java.util.List;
 
 @Entity
 public class Album {
@@ -15,6 +17,8 @@ public class Album {
     private int length;
     private String imageUrl;
 
+    @OneToMany(mappedBy = "album")
+    private List<Song> mySongs;
     public Album(){
 
     }
@@ -72,6 +76,14 @@ public class Album {
 
     public void setImageUrl(String imageUrl) {
         this.imageUrl = imageUrl;
+    }
+
+    public List<Song> getMySongs() {
+        return mySongs;
+    }
+
+    public void setMySongs(List<Song> mySongs) {
+        this.mySongs = mySongs;
     }
 
     @Override

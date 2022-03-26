@@ -20,7 +20,10 @@
 
  ********************************    Lab 12   ********************************
 
-   * addToDB : add data about an album from declaring an object and save them in DataBase
+
+* In HelloWorldController there are 3 new routes as follows : 
+
+   * (/addToDB) : add data about an album from declaring an object and save them in DataBase
 
 
    * (/allalbums): returns a page shows list of albums that are in Database
