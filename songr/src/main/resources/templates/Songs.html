@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Songs</title>
+</head>
+<body>
+<h1>Songs</h1>
+
+<form action="/addSong" method="post">
+<!--    <p>id</p><input type="text" name="id" /></br>-->
+    <p>title</p><input type="text" name="title" /></br>
+    <p>length</p><input type="int" name="length" /></br>
+    <p>trackNumber</p><input type="int" name="trackNumber" /></br>
+    <button type="submit">Submit</button>
+
+</form>
+
+<ul th:each="Song: ${mySongs}">
+    <p>id</p><span th:text="${Song.id}"></span>
+    <p>Title</p><span th:text="${Song.title}"></span>
+    <p>length </p><span th:text="${Song.length}"></span>
+    <p>track Number</p><span th:text="${Song.trackNumber}"></span>
+    <p>**********************************************************</p>
+</ul>
+</body>
+</html>
